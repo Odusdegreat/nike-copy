@@ -1,37 +1,42 @@
-// src/components/ProductCard.tsx
 import React from "react";
-import { Image, Text, View } from "react-native";
-import { useTailwind } from "tailwind-rn";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface ProductCardProps {
-  imageUrl: string;
+  id: number;
+  image: string;
   title: string;
   price: string;
-  oldPrice?: string;
+  originalPrice?: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  imageUrl,
+  id,
+  image,
   title,
   price,
-  oldPrice,
+  originalPrice,
 }) => {
-  const tailwind = useTailwind();
+  const handlePress = () => {
+    console.log(`Product ${id} pressed: ${title}`);
+  };
 
   return (
-    <View style={tailwind("p-4 bg-white rounded-lg shadow-lg")}>
+    <TouchableOpacity className="w-32 mx-2" onPress={handlePress}>
       <Image
-        source={{ uri: imageUrl }}
-        style={tailwind("w-full h-36 object-cover rounded-lg")}
+        source={{ uri: image }}
+        className="w-full h-40 rounded-lg bg-gray-100"
+        resizeMode="cover"
       />
-      <Text style={tailwind("mt-2 text-lg font-semibold")}>{title}</Text>
-      <Text style={tailwind("text-gray-600")}>
-        {oldPrice && (
-          <Text style={tailwind("line-through text-gray-400")}>{oldPrice}</Text>
+      <Text className="text-sm font-semibold text-gray-900 mt-2">{title}</Text>
+      <View className="flex-row items-center mt-1">
+        {originalPrice && (
+          <Text className="text-xs text-gray-400 line-through mr-2">
+            {originalPrice}
+          </Text>
         )}
-        {price}
-      </Text>
-    </View>
+        <Text className="text-sm font-bold text-gray-900">{price}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
