@@ -1,43 +1,33 @@
-import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-interface ProductCardProps {
-  id: number;
-  image: any;
-  title: string;
+type Props = {
+  name: string;
   price: string;
-  originalPrice?: string;
-}
-
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  image,
-  title,
-  price,
-  originalPrice,
-}) => {
-  const handlePress = () => {
-    console.log(`Product ${id} pressed: ${title}`);
-  };
-
-  return (
-    <TouchableOpacity className="w-32 mx-2" onPress={handlePress}>
-      <Image
-        source={image}
-        className="w-full h-40 rounded-lg bg-gray-100"
-        resizeMode="cover"
-      />
-      <Text className="text-sm font-semibold text-gray-900 mt-2">{title}</Text>
-      <View className="flex-row items-center mt-1">
-        {originalPrice && (
-          <Text className="text-xs text-gray-400 line-through mr-2">
-            {originalPrice}
-          </Text>
-        )}
-        <Text className="text-sm font-bold text-gray-900">{price}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+  image: any;
 };
 
-export default ProductCard;
+export default function ProductCard({ name, price, image }: Props) {
+  return (
+    <View className="w-[48%] mb-6">
+      <View className="bg-gray-100 rounded-2xl p-3 relative">
+        <TouchableOpacity className="absolute right-3 top-3 z-10">
+          <Ionicons name="heart-outline" size={20} color="#000" />
+        </TouchableOpacity>
+
+        <Image
+          source={image}
+          className="h-28 w-full"
+          resizeMode="contain"
+        />
+      </View>
+
+      <Text className="mt-2 font-semibold text-sm">
+        {name}
+      </Text>
+      <Text className="text-gray-500 text-sm">
+        {price}
+      </Text>
+    </View>
+  );
+}
