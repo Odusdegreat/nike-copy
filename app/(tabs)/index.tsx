@@ -1,19 +1,23 @@
-import NikeLogo from "@/assets/images/nike-logo.svg";
 import HeroCard from "@/components/HeroCard";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
-import { ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 40 }}
       className="flex-1 bg-white px-4 pt-12"
     >
-      {/* Header */}
-      <NikeLogo width={120} height={40} style={{ marginBottom: 20 }} />
+      {/* Header - using PNG for stability */}
+      <Image
+        source={require("@/assets/images/nike-logo.png")}
+        style={{ width: 120, height: 40, marginBottom: 20 }}
+        resizeMode="contain"
+      />
 
-      {/* Hero */}
+      {/* Hero section */}
       <HeroCard />
 
       {/* Section title */}
@@ -22,10 +26,12 @@ export default function HomeScreen() {
         <Text className="text-gray-500 text-sm">See all</Text>
       </View>
 
-      {/* Products */}
-      <View className="flex-row flex-wrap justify-between">
+      {/* Products grid */}
+      <View className="flex-row flex-wrap -mx-2">
         {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
+          <View key={item.id} className="w-1/2 px-2 mb-4">
+            <ProductCard item={item} />
+          </View>
         ))}
       </View>
     </ScrollView>

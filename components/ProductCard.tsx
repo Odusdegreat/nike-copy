@@ -1,23 +1,22 @@
-import { Image, Text, View } from "react-native";
+import { Image, ImageSourcePropType, Text, View } from "react-native";
 
 type Props = {
   item: {
     id: number;
     name: string;
     price: string;
-    image: any;
+    image: ImageSourcePropType;
   };
 };
 
 export default function ProductCard({ item }: Props) {
   return (
-    <View className="w-[48%] bg-gray-100 rounded-xl p-3 mb-4">
+    <View className="bg-gray-100 rounded-xl p-3">
       <Image
         source={item.image}
         className="w-full h-28 mb-2"
         resizeMode="contain"
       />
-
       <Text className="font-semibold">{item.name}</Text>
       <Text className="text-gray-500">{item.price}</Text>
     </View>
