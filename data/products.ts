@@ -1,20 +1,15 @@
 export const products = [
   {
     id: "1",
-    name: "Nike Air Zoom Pegasus",
+    name: "Tech Fleece",
     price: "$120",
-    image: require("../assets/shoe1.png"),
+    image: require("../assets/product1.png"),
   },
   {
     id: "2",
-    name: "Nike React Infinity",
+    name: "Indy Luxe",
     price: "$140",
-    image: require("../assets/shoe2.png"),
+    image: require("../assets/product2.png"),
   },
-  {
-    id: "3",
-    name: "Nike Metcon 9",
-    price: "$150",
-    image: require("../assets/shoe3.png"),
-  },
+ 
 ];

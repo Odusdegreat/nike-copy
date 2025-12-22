@@ -4,7 +4,7 @@ export default function HeroCard() {
   return (
     <View className="bg-black rounded-3xl p-5 mb-6">
       <Image
-        source={require("../assets/images/banner.png")}
+        source={require("../assets/nike-banner.png")}
         className="h-40 w-full rounded-2xl"
         resizeMode="cover"
       />
