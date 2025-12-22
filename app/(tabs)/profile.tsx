@@ -1,10 +1,9 @@
 import React from "react";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
-import BottomNav from "../../components/BottomNav";
 import Header from "../../components/Header";
 import { UserIcon } from "../../components/Icons";
 
-const ProfileScreen = () => {
+export default function ProfileScreen() {
   const menuItems = [
     "Orders",
     "Settings",
@@ -41,9 +40,6 @@ const ProfileScreen = () => {
           ))}
         </View>
       </View>
-      <BottomNav />
     </SafeAreaView>
   );
-};
-
-export default ProfileScreen;
+}

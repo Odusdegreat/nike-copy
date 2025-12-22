@@ -3,16 +3,14 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 const MadeForMilesBanner = () => {
   const handleBannerPress = () => {
-    console.log("Banner pressed - Navigate to running shoes");
+    console.log("Banner pressed");
   };
 
   return (
     <View className="px-4 mt-6">
       <TouchableOpacity onPress={handleBannerPress}>
         <Image
-          source={{
-            uri: "https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1423,c_limit/4f37fca8-6bce-43e7-ad07-f57ae3c13142/nike-running.png",
-          }}
+          source={require("../assets/nike-banner.png")}
           className="w-full h-40 rounded-lg bg-gray-100"
           resizeMode="cover"
         />

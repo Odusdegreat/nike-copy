@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface ProductCardProps {
   id: number;
-  image: string;
+  image: any;
   title: string;
   price: string;
   originalPrice?: string;
@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <TouchableOpacity className="w-32 mx-2" onPress={handlePress}>
       <Image
-        source={{ uri: image }}
+        source={image}
         className="w-full h-40 rounded-lg bg-gray-100"
         resizeMode="cover"
       />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
-import { ShoppingBagIcon } from "../components/Icons";
+import { ShoppingBagIcon } from "./Icons";
 
 const Header = () => {
   const handleBagPress = () => {
@@ -10,10 +10,8 @@ const Header = () => {
   return (
     <View className="flex-row justify-between items-center px-4 py-3">
       <Image
-        source={{
-          uri: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
-        }}
-        className="w-16 h-6"
+        source={require("../assets/nike-logo.png")}
+        className="w-12 h-12"
         resizeMode="contain"
       />
       <TouchableOpacity onPress={handleBagPress}>

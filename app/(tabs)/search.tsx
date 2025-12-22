@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { SafeAreaView, Text, TextInput, View } from "react-native";
-import BottomNav from "../../components/BottomNav";
 import Header from "../../components/Header";
 
-const SearchScreen = () => {
+export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
@@ -23,9 +22,6 @@ const SearchScreen = () => {
           </Text>
         </View>
       </View>
-      <BottomNav />
     </SafeAreaView>
   );
-};
-
-export default SearchScreen;
+}

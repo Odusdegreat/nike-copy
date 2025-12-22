@@ -1,10 +1,9 @@
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import BottomNav from "../../components/BottomNav";
 import Header from "../../components/Header";
 import { HeartIcon } from "../../components/Icons";
 
-const FavoritesScreen = () => {
+export default function FavoritesScreen() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <Header />
@@ -18,9 +17,6 @@ const FavoritesScreen = () => {
           </Text>
         </View>
       </View>
-      <BottomNav />
     </SafeAreaView>
   );
-};
-
-export default FavoritesScreen;
+}

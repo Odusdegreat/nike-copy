@@ -13,7 +13,7 @@ const Navigation: React.FC = () => {
       {/* Logo */}
       <TouchableOpacity>
         <Image
-          source={require("../assets/logo.png")} // Make sure you have a logo image in assets
+          source={require("../assets/nike-logo.png")} // Make sure you have a logo image in assets
           style={tailwind("w-10 h-10")} // Adjust size as needed
         />
       </TouchableOpacity>

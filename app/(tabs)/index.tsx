@@ -1,25 +1,20 @@
-// app/tabs/index.tsx
-import Navigation from "@/components/Navigation"; // Import the Navigation component
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import Explore from "./explore"; // Import the Explore screen or other tabs
+import { SafeAreaView, ScrollView, View } from "react-native";
+import Header from "../../components/Header";
+import LatestProducts from "../../components/LatestProducts";
+import MadeForMilesBanner from "../../components/MadeForMilesBanner";
+import ShoeGallery from "../../components/ShoeGallery";
 
-const Tab = createBottomTabNavigator();
-
-const Index: React.FC = () => {
+export default function HomeScreen() {
   return (
-    <NavigationContainer>
-      {/* Navigation bar */}
-      <Navigation />
-
-      {/* Tab Navigation */}
-      <Tab.Navigator>
-        <Tab.Screen name="Explore" component={Explore} />
-        {/* Add more tabs/screens here */}
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaView className="flex-1 bg-white">
+      <Header />
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        <ShoeGallery />
+        <MadeForMilesBanner />
+        <LatestProducts />
+        <View className="h-20" />
+      </ScrollView>
+    </SafeAreaView>
   );
-};
-
-export default Index;
+}
