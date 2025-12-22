@@ -1,25 +1,19 @@
-import { Image, Text, View, TouchableOpacity } from "react-native";
+import { Image, Text, View } from "react-native";
 
 export default function HeroCard() {
   return (
-    <View className="bg-black rounded-3xl p-5 mb-6">
+    <View className="bg-black rounded-2xl p-5">
+      <Text className="text-white text-xl font-bold mb-2">
+        New Nike Collection
+      </Text>
+
+      <Text className="text-gray-300 mb-4">Discover the latest drops</Text>
+
       <Image
-        source={require("../assets/nike-banner.png")}
-        className="h-40 w-full rounded-2xl"
-        resizeMode="cover"
+        source={require("@/assets/products/shoe1.png")}
+        className="w-full h-40"
+        resizeMode="contain"
       />
-
-      <Text className="text-white text-xl font-bold mt-4">
-        Made For Miles
-      </Text>
-
-      <Text className="text-gray-300 text-sm mt-1">
-        Performance gear for everyday runs
-      </Text>
-
-      <TouchableOpacity className="bg-white mt-4 py-3 rounded-full items-center">
-        <Text className="font-semibold">Shop Now</Text>
-      </TouchableOpacity>
     </View>
   );
 }
