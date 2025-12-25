@@ -21,4 +21,4 @@ export default function ProductCard({ item }: Props) {
       <Text className="text-gray-500">{item.price}</Text>
     </View>
   );
-
+}
