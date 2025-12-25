@@ -14,7 +14,7 @@ export default function ProductCard({ item }: Props) {
     <View className="bg-gray-100 rounded-xl p-3">
       <Image
         source={item.image}
-        className="w-full h-28 mb-2"
+        className="w-full h-28 mb-2 rounded-xl"
         resizeMode="contain"
       />
       <Text className="font-semibold">{item.name}</Text>

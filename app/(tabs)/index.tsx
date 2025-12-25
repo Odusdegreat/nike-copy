@@ -1,33 +1,46 @@
-import NikeLogo from "@/assets/images/nike-logo.svg";
 import HeroCard from "@/components/HeroCard";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/products";
-import { ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      className="flex-1 bg-white px-4 pt-12"
-    >
-      {/* Header */}
-      <NikeLogo width={120} height={40} style={{ marginBottom: 20 }} />
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 40 }}
+        className="px-4"
+      >
+        {/* Header */}
+        <Image
+          source={require("@/assets/images/nike-logo.png")}
+          className="w-32 h-10 mb-4"
+          resizeMode="contain"
+        />
 
-      {/* Hero */}
-      <HeroCard />
+        {/* Collection Title */}
+        <Text className="text-2xl font-semibold">New Nike Collection</Text>
+        <Text className="text-gray-500 mb-6">Discover the latest drops</Text>
 
-      {/* Section title */}
-      <View className="flex-row justify-between items-center mb-4 mt-6">
-        <Text className="text-lg font-bold">New Arrivals</Text>
-        <Text className="text-gray-500 text-sm">See all</Text>
-      </View>
+        {/* Hero Section */}
+        <HeroCard />
 
-      {/* Products */}
-      <View className="flex-row flex-wrap justify-between">
-        {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))}
-      </View>
-    </ScrollView>
+        {/* New Arrivals */}
+        <View className="flex-row justify-between items-center mt-8 mb-4">
+          <Text className="text-lg font-semibold">New Arrivals</Text>
+          <Text className="text-gray-500">See all</Text>
+        </View>
+
+        {/* Products Grid */}
+        <View className="flex-row flex-wrap -mx-2 mb-24">
+          {products.map((item) => (
+            <View key={item.id} className="w-1/2 px-2 mb-4">
+              <ProductCard item={item} />
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
