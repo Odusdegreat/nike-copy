@@ -9,11 +9,13 @@ interface ProductGridProps {
 
 export default function ProductGrid({ title, products }: ProductGridProps) {
   return (
-    <View className="mt-6">
+    <View className="mt-4 mb-4">
       <Text className="text-2xl font-bold px-4 mb-4">{title}</Text>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      <View>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </View>
     </View>
   );
 }

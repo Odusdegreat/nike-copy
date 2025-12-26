@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { ScrollView, View, ViewStyle } from "react-native";
+import { ScrollView, StatusBar, View, ViewStyle } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ScreenProps {
   children: ReactNode;
@@ -12,21 +13,23 @@ export default function Screen({
   scroll = true,
   style,
 }: ScreenProps) {
-  if (scroll) {
-    return (
-      <ScrollView
-        className="flex-1 bg-white"
-        showsVerticalScrollIndicator={false}
-        style={style}
-      >
-        {children}
-      </ScrollView>
-    );
-  }
-
   return (
-    <View className="flex-1 bg-white" style={style}>
-      {children}
-    </View>
+    <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
+      <StatusBar barStyle="dark-content" />
+      {scroll ? (
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+          style={style}
+        >
+          {children}
+        </ScrollView>
+      ) : (
+        <View className="flex-1" style={style}>
+          {children}
+        </View>
+      )}
+    </SafeAreaView>
   );
 }
