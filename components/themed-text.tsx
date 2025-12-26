@@ -1,60 +1,38 @@
-import { StyleSheet, Text, type TextProps } from 'react-native';
+import { Heart } from "lucide-react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Product } from "../types";
 
-import { useThemeColor } from '@/hooks/use-theme-color';
-
-export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-};
-
-export function ThemedText({
-  style,
-  lightColor,
-  darkColor,
-  type = 'default',
-  ...rest
-}: ThemedTextProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-
-  return (
-    <Text
-      style={[
-        { color },
-        type === 'default' ? styles.default : undefined,
-        type === 'title' ? styles.title : undefined,
-        type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
-        type === 'subtitle' ? styles.subtitle : undefined,
-        type === 'link' ? styles.link : undefined,
-        style,
-      ]}
-      {...rest}
-    />
-  );
+interface ProductCardProps {
+  product: Product;
+  onPress?: () => void;
 }
 
-const styles = StyleSheet.create({
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: '600',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: '#0a7ea4',
-  },
-});
+export default function ProductCard({ product, onPress }: ProductCardProps) {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className="bg-white rounded-lg overflow-hidden mb-4 mx-4"
+      activeOpacity={0.7}
+    >
+      <View className="relative">
+        <Image
+          source={{ uri: product.image }}
+          className="w-full h-48 bg-gray-100"
+          resizeMode="cover"
+        />
+        <TouchableOpacity className="absolute top-3 right-3 bg-white rounded-full p-2">
+          <Heart size={20} color="#000" />
+        </TouchableOpacity>
+      </View>
+
+      <View className="p-3">
+        <Text className="text-orange-600 text-xs font-semibold mb-1">
+          Just In
+        </Text>
+        <Text className="font-semibold text-base mb-1">{product.name}</Text>
+        <Text className="text-gray-600 text-sm mb-2">{product.category}</Text>
+        <Text className="font-bold text-base">${product.price}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
