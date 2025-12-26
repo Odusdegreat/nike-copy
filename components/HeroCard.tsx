@@ -8,7 +8,7 @@ export default function HeroCard() {
         Get the newest Nike sneakers now
       </Text>
       <Image
-        source={require("@/assets/images/shoe1.png")}
+        source={require("@/assets/nike-banner.png")}
         className="w-full h-40 rounded-xl"
         resizeMode="contain"
       />
