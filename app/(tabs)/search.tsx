@@ -1,7 +1,9 @@
 import { Search as SearchIcon, X } from "lucide-react-native";
 import { useState } from "react";
 import {
+  Dimensions,
   FlatList,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -10,6 +12,8 @@ import {
 import Screen from "../../components/layout/Screen";
 import ProductCard from "../../components/ProductCard";
 import { PRODUCTS } from "../../constants/product";
+
+const { width } = Dimensions.get("window");
 
 export default function SearchScreen() {
   const [searchText, setSearchText] = useState("");
@@ -31,23 +35,24 @@ export default function SearchScreen() {
 
   return (
     <Screen scroll={false}>
-      <View className="flex-1">
-        <View className="px-4 pb-4">
-          <Text className="text-3xl font-bold mb-4">Search</Text>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Search</Text>
 
-          <View className="flex-row items-center bg-gray-100 rounded-full px-4 py-3">
-            <SearchIcon size={20} color="#999" />
+          <View style={styles.searchContainer}>
+            <SearchIcon size={18} color="#999" />
             <TextInput
               value={searchText}
               onChangeText={handleSearch}
               placeholder="Search for products..."
-              className="flex-1 ml-3 text-base"
+              style={styles.input}
               placeholderTextColor="#999"
               autoCapitalize="none"
+              autoCorrect={false}
             />
             {searchText.length > 0 && (
               <TouchableOpacity onPress={() => handleSearch("")}>
-                <X size={20} color="#999" />
+                <X size={18} color="#999" />
               </TouchableOpacity>
             )}
           </View>
@@ -58,13 +63,11 @@ export default function SearchScreen() {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ProductCard product={item} />}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 100 }}
+          contentContainerStyle={styles.listContent}
           ListEmptyComponent={
-            <View className="items-center justify-center py-12">
-              <SearchIcon size={48} color="#ccc" />
-              <Text className="text-gray-500 text-lg mt-4">
-                No products found
-              </Text>
+            <View style={styles.emptyContainer}>
+              <SearchIcon size={48} color="#ccc" strokeWidth={1.5} />
+              <Text style={styles.emptyText}>No products found</Text>
             </View>
           }
         />
@@ -72,3 +75,48 @@ export default function SearchScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    paddingHorizontal: 20,
+    paddingBottom: 15,
+    paddingTop: 5,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 16,
+    color: "#000",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 30,
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+  },
+  input: {
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 15,
+    color: "#000",
+  },
+  listContent: {
+    paddingBottom: 120,
+    paddingTop: 10,
+  },
+  emptyContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 60,
+  },
+  emptyText: {
+    color: "#999",
+    fontSize: 16,
+    marginTop: 16,
+  },
+});

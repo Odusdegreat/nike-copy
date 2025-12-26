@@ -1,35 +1,38 @@
 import { ReactNode } from "react";
-import { ScrollView, StatusBar, View, ViewStyle } from "react-native";
+import { ScrollView, StatusBar, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 interface ScreenProps {
   children: ReactNode;
   scroll?: boolean;
-  style?: ViewStyle;
 }
 
-export default function Screen({
-  children,
-  scroll = true,
-  style,
-}: ScreenProps) {
+export default function Screen({ children, scroll = true }: ScreenProps) {
+  const Container = scroll ? ScrollView : View;
+
   return (
-    <SafeAreaView className="flex-1 bg-white" edges={["top"]}>
-      <StatusBar barStyle="dark-content" />
-      {scroll ? (
-        <ScrollView
-          className="flex-1"
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 100 }}
-          style={style}
-        >
-          {children}
-        </ScrollView>
-      ) : (
-        <View className="flex-1" style={style}>
-          {children}
-        </View>
-      )}
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <Container
+        style={styles.container}
+        contentContainerStyle={scroll ? styles.scrollContent : undefined}
+        showsVerticalScrollIndicator={false}
+      >
+        {children}
+      </Container>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+  },
+  container: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 120,
+  },
+});
