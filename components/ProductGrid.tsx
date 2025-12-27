@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
-import { Product } from "../types";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/ProductCard";
+import { Product } from "../types/product";
 
 interface ProductGridProps {
   title: string;

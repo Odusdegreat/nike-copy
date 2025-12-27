@@ -1,47 +1,25 @@
-// components/BottomNav.tsx
-import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { Heart, Home, Search, User } from "lucide-react-native";
+import { StyleSheet, View } from "react-native";
+import { Colors } from "../constants/theme";
 
-const BottomNav: React.FC = () => {
-  const navigation = useNavigation();
-
+export default function BottomNav() {
   return (
-    <View className="flex-row justify-around items-center py-4 border-t bg-black">
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
-        className="flex items-center justify-center"
-      >
-        <Ionicons name="home" size={24} color="white" />
-        <Text className="text-sm text-white">Home</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Search')}
-        className="flex items-center justify-center"
-      >
-        <Ionicons name="search" size={24} color="white" />
-        <Text className="text-sm text-white">Search</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Cart')}
-        className="flex items-center justify-center"
-      >
-        <Ionicons name="cart" size={24} color="white" />
-        <Text className="text-sm text-white">Cart</Text>
-      </TouchableOpacity>
-      
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Profile')}
-        className="flex items-center justify-center"
-      >
-        <Ionicons name="person" size={24} color="white" />
-        <Text className="text-sm text-white">Profile</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <Home size={22} />
+      <Search size={22} />
+      <Heart size={22} />
+      <User size={22} />
     </View>
   );
-};
+}
 
-export default BottomNav;
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 32,
+    paddingVertical: 16,
+    borderTopWidth: 1,
+    borderColor: Colors.border,
+  },
+});
