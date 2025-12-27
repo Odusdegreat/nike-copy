@@ -1,15 +1,18 @@
-export const products = [
+import { Product } from "../types/product";
+
+export const products: Product[] = [
   {
     id: "1",
-    name: "Tech Fleece",
-    price: "$120",
-    image: require("../assets/product1.png"),
+    title: "Tech Fleece",
+    subtitle: "Men's Pullover Hoodie",
+    price: "$110",
+    image: "https://i.imgur.com/QCNbOAo.png",
   },
   {
     id: "2",
-    name: "Indy Luxe",
-    price: "$140",
-    image: require("../assets/product2.png"),
+    title: "Indy Luxe",
+    subtitle: "Women's Light-Support",
+    price: "$50",
+    image: "https://i.imgur.com/7kY5x3y.png",
   },
- 
 ];
