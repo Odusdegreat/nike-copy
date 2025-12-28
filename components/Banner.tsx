@@ -14,22 +14,22 @@ export default function Banner() {
     <View style={styles.container}>
       <View style={styles.row}>
         <Image
-          source={require("../assets/images/shoe1.png")}
+          source={require("../assets/shoe1.png")}
           style={[styles.image, { width: imageWidth }]}
         />
         <Image
-          source={require("../assets/images/shoe2.png")}
+          source={require("../assets/shoe2.png")}
           style={[styles.image, { width: imageWidth }]}
         />
       </View>
 
       <View style={styles.row}>
         <Image
-          source={require("../assets/images/shoe3.png")}
+          source={require("../assets/shoe3.png")}
           style={[styles.image, { width: imageWidth }]}
         />
         <Image
-          source={require("../assets/images/shoe4.png")}
+          source={require("../assets/shoe4.png")}
           style={[styles.image, { width: imageWidth }]}
         />
       </View>
