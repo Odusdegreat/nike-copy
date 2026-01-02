@@ -9,6 +9,7 @@ const SIZES = ["XS", "S", "M", "L"];
 export default function ProductDetailsScreen() {
   const [selectedSize, setSelectedSize] = useState("XS");
   const [qty, setQty] = useState(1);
+  const [liked, setLiked] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,8 +19,21 @@ export default function ProductDetailsScreen() {
           <Feather name="chevron-left" size={24} />
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Feather name="heart" size={22} />
+        <TouchableOpacity
+          onPress={() => {
+            setLiked(true);
+            router.push({
+              pathname: "/(tabs)/favorites",
+              params: {
+                liked: "true",
+                name: "Nike Swoosh",
+                category: "Women`s Medium-Support",
+                price: "₦27,000",
+              },
+            });
+          }}
+        >
+          <Feather name="heart" size={22} color={liked ? "#EF4444" : "#000"} />
         </TouchableOpacity>
       </View>
 
@@ -30,12 +44,12 @@ export default function ProductDetailsScreen() {
         resizeMode="contain"
       />
 
-      {/* BOTTOM CARD */}
+      {/* DETAILS CARD */}
       <View style={styles.card}>
         <View style={styles.dragIndicator} />
 
         <Text style={styles.title}>Nike Swoosh</Text>
-        <Text style={styles.subtitle}>Women's Medium-Support</Text>
+        <Text style={styles.subtitle}>Women`s Medium-Support</Text>
 
         {/* SIZE */}
         <Text style={styles.sectionTitle}>Select size</Text>
@@ -90,12 +104,9 @@ export default function ProductDetailsScreen() {
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+  container: { flex: 1, backgroundColor: "#fff" },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -103,11 +114,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
+
   image: {
     width: "100%",
     height: 300,
     marginVertical: 20,
   },
+
   card: {
     flex: 1,
     backgroundColor: "#f8f8f8",
@@ -115,6 +128,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     padding: 20,
   },
+
   dragIndicator: {
     width: 40,
     height: 5,
@@ -123,28 +137,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#000",
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#666",
-    marginTop: 5,
-    marginBottom: 20,
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginBottom: 10,
-    color: "#000",
-  },
-  sizeRow: {
-    flexDirection: "row",
-    gap: 10,
-    marginBottom: 20,
-  },
+
+  title: { fontSize: 24, fontWeight: "bold" },
+  subtitle: { fontSize: 16, color: "#666", marginBottom: 20 },
+
+  sectionTitle: { fontSize: 16, fontWeight: "600", marginBottom: 10 },
+
+  sizeRow: { flexDirection: "row", gap: 10, marginBottom: 20 },
+
   sizeBox: {
     width: 50,
     height: 50,
@@ -155,24 +155,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ddd",
   },
-  sizeActive: {
-    backgroundColor: "#000",
-    borderColor: "#000",
-  },
-  sizeText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#000",
-  },
-  sizeTextActive: {
-    color: "#fff",
-  },
+
+  sizeActive: { backgroundColor: "#000" },
+  sizeText: { fontWeight: "600" },
+  sizeTextActive: { color: "#fff" },
+
   qtyRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
   },
+
   qtyControl: {
     flexDirection: "row",
     alignItems: "center",
@@ -182,35 +176,20 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     gap: 20,
   },
-  qtyText: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#000",
-    minWidth: 20,
-    textAlign: "center",
-  },
-  priceLabel: {
-    fontSize: 12,
-    color: "#666",
-    marginBottom: 5,
-  },
-  price: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#000",
-  },
+
+  qtyText: { fontSize: 16, fontWeight: "600" },
+
+  priceLabel: { fontSize: 12, color: "#666" },
+  price: { fontSize: 24, fontWeight: "bold" },
+
   addBtn: {
     flexDirection: "row",
     backgroundColor: "#000",
     borderRadius: 30,
     paddingVertical: 16,
-    alignItems: "center",
     justifyContent: "center",
     gap: 10,
   },
-  addText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
-  },
+
+  addText: { color: "#fff", fontSize: 16, fontWeight: "600" },
 });

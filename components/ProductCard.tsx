@@ -1,8 +1,9 @@
+import { router } from "expo-router";
 import {
   Image,
   StyleSheet,
   Text,
-  View,
+  TouchableOpacity,
   useWindowDimensions,
 } from "react-native";
 import { Product } from "../types/product";
@@ -15,17 +16,31 @@ export default function ProductCard({ product }: Props) {
   const { width } = useWindowDimensions();
   const cardWidth = width * 0.38;
 
+  const handlePress = () => {
+    if (product.id === "nike-woman") {
+      router.push("/product");
+    }
+  };
+
   return (
-    <View style={[styles.card, { width: cardWidth }]}>
+    <TouchableOpacity
+      style={[styles.card, { width: cardWidth }]}
+      activeOpacity={product.id === "nike-woman" ? 0.85 : 1}
+      onPress={handlePress}
+      disabled={product.id !== "nike-woman"}
+    >
       <Image source={product.image} style={styles.image} />
+
       <Text style={styles.name} numberOfLines={1}>
         {product.name}
       </Text>
+
       <Text style={styles.category} numberOfLines={1}>
         {product.category}
       </Text>
+
       <Text style={styles.price}>{product.price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

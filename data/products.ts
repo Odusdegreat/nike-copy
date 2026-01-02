@@ -15,4 +15,11 @@ export const products: Product[] = [
     price: "$50",
     image: require("../assets/product2.png"),
   },
+  {
+    id: "nike-woman", // 👈 IMPORTANT
+    name: "Nike Swoosh",
+    category: "Women's Medium-Support",
+    price: "$18",
+    image: require("../assets/nike-woman.png"),
+  },
 ];
