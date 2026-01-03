@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   SafeAreaView,
@@ -46,9 +47,10 @@ export default function SearchScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 40 }}
       >
-        {/* TRENDING */}
+        {/* DEFAULT STATE */}
         {query.length === 0 && (
           <>
+            {/* TRENDING */}
             <Text style={styles.sectionTitle}>Trending Searches</Text>
 
             {TRENDING.map((item) => (
@@ -69,22 +71,28 @@ export default function SearchScreen() {
               ))}
             </View>
 
-            {/* EDITORIAL */}
+            {/* DISCOVER */}
             <Text style={styles.sectionTitle}>Discover</Text>
 
-            <View style={styles.editorialCard}>
-              <Text style={styles.editorialTitle}>New & Featured</Text>
-              <Text style={styles.editorialSub}>
+            {/* NEW & FEATURED */}
+            <View style={styles.editorialCardDark}>
+              <Text style={styles.editorialTitleDark}>New & Featured</Text>
+              <Text style={styles.editorialSubDark}>
                 The latest drops, made for movement.
               </Text>
             </View>
 
-            <View style={styles.editorialCardAlt}>
-              <Text style={styles.editorialTitle}>Member Shop</Text>
-              <Text style={styles.editorialSub}>
+            {/* MEMBER SHOP (NAVIGATES) */}
+            <TouchableOpacity
+              activeOpacity={0.85}
+              onPress={() => router.push("/members")}
+              style={styles.editorialCardLight}
+            >
+              <Text style={styles.editorialTitleLight}>Member Shop</Text>
+              <Text style={styles.editorialSubLight}>
                 Exclusive styles for Nike Members.
               </Text>
-            </View>
+            </TouchableOpacity>
           </>
         )}
 
@@ -100,6 +108,9 @@ export default function SearchScreen() {
     </SafeAreaView>
   );
 }
+
+/* ================= STYLES ================= */
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -164,28 +175,41 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 
-  editorialCard: {
+  /* DISCOVER CARDS */
+  editorialCardDark: {
     backgroundColor: "#000",
     borderRadius: 18,
     padding: 20,
     marginBottom: 14,
   },
 
-  editorialCardAlt: {
-    backgroundColor: "#F3F4F6",
-    borderRadius: 18,
-    padding: 20,
-  },
-
-  editorialTitle: {
+  editorialTitleDark: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "700",
     marginBottom: 6,
   },
 
-  editorialSub: {
+  editorialSubDark: {
     color: "#D1D5DB",
+    fontSize: 14,
+  },
+
+  editorialCardLight: {
+    backgroundColor: "#F3F4F6",
+    borderRadius: 18,
+    padding: 20,
+  },
+
+  editorialTitleLight: {
+    color: "#111827",
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 6,
+  },
+
+  editorialSubLight: {
+    color: "#4B5563",
     fontSize: 14,
   },
 
