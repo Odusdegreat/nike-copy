@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import {
   Image,
   SafeAreaView,
@@ -10,14 +11,16 @@ import {
 } from "react-native";
 
 export default function ProfileScreen() {
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* HEADER */}
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Profile</Text>
+          <Text style={styles.headerTitle}></Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/settings")}>
             <Feather name="settings" size={22} />
           </TouchableOpacity>
         </View>
@@ -25,9 +28,7 @@ export default function ProfileScreen() {
         {/* USER CARD */}
         <View style={styles.profileCard}>
           <Image
-            source={{
-              uri: "https://i.pravatar.cc/150?img=12",
-            }}
+            source={{ uri: "https://i.pravatar.cc/150?img=12" }}
             style={styles.avatar}
           />
 
@@ -42,7 +43,7 @@ export default function ProfileScreen() {
         </View>
 
         {/* MEMBER STATUS */}
-        <View style={styles.memberCard}>
+        <TouchableOpacity style={styles.memberCard}>
           <Feather name="award" size={22} color="#fff" />
           <View style={{ flex: 1 }}>
             <Text style={styles.memberTitle}>Nike Member</Text>
@@ -51,7 +52,7 @@ export default function ProfileScreen() {
             </Text>
           </View>
           <Feather name="chevron-right" size={22} color="#fff" />
-        </View>
+        </TouchableOpacity>
 
         {/* QUICK ACTIONS */}
         <View style={styles.section}>
@@ -63,7 +64,6 @@ export default function ProfileScreen() {
 
         {/* ACCOUNT */}
         <Text style={styles.sectionTitle}>Account</Text>
-
         <View style={styles.section}>
           <ProfileItem icon="user" label="Personal Information" />
           <ProfileItem icon="lock" label="Security" />
@@ -72,13 +72,12 @@ export default function ProfileScreen() {
 
         {/* SUPPORT */}
         <Text style={styles.sectionTitle}>Support</Text>
-
         <View style={styles.section}>
           <ProfileItem icon="help-circle" label="Help Center" />
           <ProfileItem icon="info" label="About Nike" />
         </View>
 
-        {/* LOGOUT */}
+        {/* LOG OUT */}
         <TouchableOpacity style={styles.logoutBtn}>
           <Text style={styles.logoutText}>Log out</Text>
         </TouchableOpacity>
@@ -86,8 +85,6 @@ export default function ProfileScreen() {
     </SafeAreaView>
   );
 }
-
-/* ===== REUSABLE ROW ===== */
 
 function ProfileItem({ icon, label }: { icon: any; label: string }) {
   return (
@@ -99,26 +96,17 @@ function ProfileItem({ icon, label }: { icon: any; label: string }) {
   );
 }
 
-/* ===== STYLES ===== */
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+  container: { flex: 1, backgroundColor: "#fff" },
 
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 16,
   },
 
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: "700",
-  },
+  headerTitle: { fontSize: 22, fontWeight: "700" },
 
   profileCard: {
     flexDirection: "row",
@@ -128,23 +116,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  avatar: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    backgroundColor: "#E5E7EB",
-  },
+  avatar: { width: 72, height: 72, borderRadius: 36 },
 
-  name: {
-    fontSize: 18,
-    fontWeight: "700",
-  },
-
-  email: {
-    fontSize: 14,
-    color: "#6B7280",
-    marginTop: 2,
-  },
+  name: { fontSize: 18, fontWeight: "700" },
+  email: { fontSize: 14, color: "#6B7280", marginTop: 2 },
 
   editBtn: {
     marginTop: 10,
@@ -156,10 +131,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
 
-  editText: {
-    fontSize: 13,
-    fontWeight: "600",
-  },
+  editText: { fontSize: 13, fontWeight: "600" },
 
   memberCard: {
     flexDirection: "row",
@@ -172,30 +144,18 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
-  memberTitle: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-
-  memberSub: {
-    color: "#D1D5DB",
-    fontSize: 13,
-  },
+  memberTitle: { color: "#fff", fontSize: 16, fontWeight: "700" },
+  memberSub: { color: "#D1D5DB", fontSize: 13 },
 
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "600",
-    marginBottom: 8,
-    marginTop: 10,
-    paddingHorizontal: 20,
     color: "#6B7280",
+    paddingHorizontal: 20,
+    marginBottom: 8,
   },
 
-  section: {
-    backgroundColor: "#fff",
-    marginBottom: 20,
-  },
+  section: { marginBottom: 20 },
 
   row: {
     flexDirection: "row",
@@ -207,15 +167,10 @@ const styles = StyleSheet.create({
     gap: 14,
   },
 
-  rowText: {
-    flex: 1,
-    fontSize: 15,
-    fontWeight: "500",
-  },
+  rowText: { flex: 1, fontSize: 15, fontWeight: "500" },
 
   logoutBtn: {
     marginHorizontal: 20,
-    marginTop: 10,
     marginBottom: 40,
     borderRadius: 30,
     paddingVertical: 14,
@@ -224,9 +179,5 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
   },
 
-  logoutText: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#EF4444",
-  },
+  logoutText: { fontSize: 15, fontWeight: "600", color: "#EF4444" },
 });
