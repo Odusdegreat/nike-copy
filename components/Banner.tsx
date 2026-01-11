@@ -8,67 +8,90 @@ import {
 
 export default function Banner() {
   const { width } = useWindowDimensions();
-  const imageWidth = (width - 64) / 2;
+
+  // Slightly wider spacing for a relaxed Nike-style layout
+  const imageWidth = (width - 96) / 2;
 
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <Image
-          source={require("../assets/shoe1.png")}
-          style={[styles.image, { width: imageWidth }]}
-        />
-        <Image
-          source={require("../assets/shoe2.png")}
-          style={[styles.image, { width: imageWidth }]}
-        />
+      {/* SHOE GRID */}
+      <View style={styles.imagesWrapper}>
+        <View style={styles.row}>
+          <Image
+            source={require("../assets/shoe1.png")}
+            style={[styles.image, { width: imageWidth }]}
+          />
+          <Image
+            source={require("../assets/shoe2.png")}
+            style={[styles.image, { width: imageWidth }]}
+          />
+        </View>
+
+        <View style={styles.row}>
+          <Image
+            source={require("../assets/shoe3.png")}
+            style={[styles.image, { width: imageWidth }]}
+          />
+          <Image
+            source={require("../assets/shoe4.png")}
+            style={[styles.image, { width: imageWidth }]}
+          />
+        </View>
       </View>
 
-      <View style={styles.row}>
-        <Image
-          source={require("../assets/shoe3.png")}
-          style={[styles.image, { width: imageWidth }]}
-        />
-        <Image
-          source={require("../assets/shoe4.png")}
-          style={[styles.image, { width: imageWidth }]}
-        />
+      {/* TEXT CONTENT */}
+      <View style={styles.textWrapper}>
+        <Text style={styles.title}>Made for Miles</Text>
+        <Text style={styles.subtitle}>
+          The perfect place to find your new{"\n"}
+          favorite running shoes
+        </Text>
       </View>
-
-      <Text style={styles.title}>Made For Miles</Text>
-      <Text style={styles.subtitle}>
-        The perfect place to find your new{"\n"}
-        favorite running shoes
-      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#F6F6F6",
     marginHorizontal: 16,
-    marginTop: 8,
-    borderRadius: 28,
-    padding: 16,
+    marginTop: 12,
+    borderRadius: 32,
+    paddingVertical: 20,
   },
+
+  imagesWrapper: {
+    paddingHorizontal: 16,
+    marginBottom: 14,
+  },
+
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 12,
+    marginBottom: 16,
   },
+
   image: {
-    height: 70,
+    height: 90,
     resizeMode: "contain",
   },
-  title: {
-    fontSize: 16,
-    fontWeight: "700",
-    marginTop: 8,
+
+  textWrapper: {
+    alignItems: "center",
+    paddingHorizontal: 24,
   },
+
+  title: {
+    fontSize: 17,
+    fontWeight: "700",
+    marginBottom: 6,
+    color: "#111827",
+  },
+
   subtitle: {
-    fontSize: 12,
+    fontSize: 13,
     color: "#6B7280",
-    marginTop: 4,
-    lineHeight: 16,
+    textAlign: "center",
+    lineHeight: 18,
   },
 });

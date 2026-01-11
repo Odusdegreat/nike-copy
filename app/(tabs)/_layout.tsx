@@ -1,14 +1,19 @@
-import { Slot } from "expo-router";
+import { Slot, usePathname } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import BottomNav from "../../components/BottomNav";
 
 export default function TabsLayout() {
+  const pathname = usePathname();
+
+  const hideBottomNav = pathname.includes("/cart");
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Slot />
       </View>
-      <BottomNav />
+
+      {!hideBottomNav && <BottomNav />}
     </View>
   );
 }

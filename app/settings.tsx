@@ -13,7 +13,7 @@ export default function SettingsScreen() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.push("/profile"); // Navigate directly to profile
+    router.push("/profile");
   };
 
   return (

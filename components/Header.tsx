@@ -1,5 +1,6 @@
 import { Feather } from "@expo/vector-icons";
-import { Image, StyleSheet, View } from "react-native";
+import { router } from "expo-router";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function Header() {
   return (
@@ -8,7 +9,10 @@ export default function Header() {
         source={require("../assets/images/nike-logo.png")}
         style={styles.logo}
       />
-      <Feather name="shopping-bag" size={22} />
+
+      <TouchableOpacity onPress={() => router.push("/(tabs)/cart")}>
+        <Feather name="shopping-bag" size={22} />
+      </TouchableOpacity>
     </View>
   );
 }
